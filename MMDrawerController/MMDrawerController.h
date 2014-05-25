@@ -92,6 +92,13 @@ typedef NS_ENUM(NSInteger, MMDrawerOpenCenterInteractionMode) {
     MMDrawerOpenCenterInteractionModeNavigationBarOnly,
 };
 
+@protocol MMDrawerDelegate <NSObject>
+
+- (void) didOpenDrawer;
+- (void) didCloseDrawer;
+
+@end
+
 @class  MMDrawerController;
 typedef void (^MMDrawerControllerDrawerVisualStateBlock)(MMDrawerController * drawerController, MMDrawerSide drawerSide, CGFloat percentVisible);
 
@@ -100,6 +107,9 @@ typedef void (^MMDrawerControllerDrawerVisualStateBlock)(MMDrawerController * dr
 ///---------------------------------------
 /// @name Accessing Drawer Container View Controller Properties
 ///---------------------------------------
+
+
+@property(nonatomic, weak) id <MMDrawerDelegate> delegate;
 
 /**
  The center view controller. 

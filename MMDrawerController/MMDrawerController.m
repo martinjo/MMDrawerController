@@ -261,6 +261,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         if(completion){
             completion(NO);
         }
+        [self.delegate didCloseDrawer];
     }
     else {
         [self setAnimatingDrawer:animated];
@@ -309,6 +310,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
              if(completion){
                  completion(finished);
              }
+             [self.delegate didCloseDrawer];
          }];
     }
 }
@@ -325,6 +327,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         if(completion){
             completion(NO);
         }
+        [self.delegate didOpenDrawer];
     }
     else {
         [self setAnimatingDrawer:animated];
@@ -372,6 +375,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
                  if(completion){
                      completion(finished);
                  }
+                 [self.delegate didOpenDrawer];
              }];
         }
     }
@@ -460,11 +464,13 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
                  completion(finished);
              }
          }];
+        [self.delegate didCloseDrawer];
     }
     else {
         if(completion) {
             completion(YES);
         }
+        [self.delegate didOpenDrawer];
     }
 }
 
@@ -538,6 +544,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
                  if(completion){
                      completion(finished);
                  }
+                 [self.delegate didCloseDrawer];
              }];
          }];
     }
@@ -593,6 +600,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
              if(completion != nil){
                  completion(finished);
              }
+             [self.delegate didOpenDrawer];
          }];
     }
     else{
@@ -600,6 +608,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         if(completion != nil){
             completion(YES);
         }
+        [self.delegate didCloseDrawer];
     }
 }
 
@@ -1002,7 +1011,6 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
             CGRect newFrame = self.startingPanRect;
             CGPoint translatedPoint = [panGesture translationInView:self.centerContainerView];
             newFrame.origin.x = [self roundedOriginXForDrawerConstriants:CGRectGetMinX(self.startingPanRect)+translatedPoint.x];
-            newFrame = CGRectIntegral(newFrame);
             CGFloat xOffset = newFrame.origin.x;
             
             MMDrawerSide visibleSide = MMDrawerSideNone;
@@ -1114,6 +1122,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         if(completion){
             completion(NO);
         }
+        [self.delegate didCloseDrawer];
     }
 }
 
